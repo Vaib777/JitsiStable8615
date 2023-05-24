@@ -230,6 +230,8 @@ class Conference extends AbstractConference<Props, State> {
         if (_audioOnlyEnabled && _startCarMode) {
             navigation.navigate(screen.conference.carmode);
         }
+        AudioMode.setAudioDevice("SPEAKER");
+
     }
 
     /**

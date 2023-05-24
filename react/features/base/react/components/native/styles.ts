@@ -138,8 +138,8 @@ export default {
     },
 
     iconButtonContainerPrimary: {
-        ...iconButtonContainer,
-        backgroundColor: BaseTheme.palette.action01
+        ...iconButtonContainer
+     //   backgroundColor: BaseTheme.palette.action01 added by jaswant
     },
 
     iconButtonContainerSecondary: {

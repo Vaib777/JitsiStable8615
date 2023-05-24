@@ -55,14 +55,14 @@ const IconButton: React.FC<IIconButtonProps> = ({
             accessibilityLabel = { accessibilityLabel }
             disabled = { disabled }
             onPress = { onPress }
-            rippleColor = { rippleColor }
+         //   rippleColor = { rippleColor }
             style = { [
                 iconButtonContainerStyles,
                 style
             ] }>
             <Icon
                 color = { color }
-                size = { 20 || size }
+                size = { 40 || size } // added by jaswant
                 src = { src } />
         </TouchableRipple>
     );

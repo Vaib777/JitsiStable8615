@@ -70,6 +70,12 @@ class CustomisedToolBox extends Component<Props, *> {
             AudioMode.setSpeakerOn(!speakerOn)
             .then((val)=>{
                 this.props.setSpeakerState(!speakerOn)
+                if(speakerOn){
+                    AudioMode.setAudioDevice("SPEAKER");
+                }else{
+                    AudioMode.setAudioDevice("EARPIECE");
+
+                }
             })
             .catch(err=>{
 
@@ -125,6 +131,17 @@ class CustomisedToolBox extends Component<Props, *> {
         this.props.setSpeakerState(false);
 
     }
+     /**
+     * Implements {@link Component#componentDidMount()}. Invoked immediately
+     * after this component is mounted.
+     *
+     * @inheritdoc
+     * @returns {void}
+     */
+      componentDidMount() {
+            AudioMode.setAudioDevice("EARPIECE");
+    }
+
     render() {
         const toolBoxFunctionTextStyle =   this.props.isTeamsCall?styles.toolBoxFunctionTextTeamStyle:styles.toolBoxFunctionTextOneToOneStyle;
         const { setSpeakerState, speakerOn, isShowingAttendees }= this.props;
@@ -146,10 +163,11 @@ class CustomisedToolBox extends Component<Props, *> {
         const speakerOnOffMessage =
         this.props.speakerOn ? "SPEAKER ON" : "SPEAKER OFF";
 
-    var text = "SPEAKER OFF";
+    var text = 'SPEAKER OFF';
     var icon = SPEAKER_DISABLED_ICON ;
     
     const devices = this.props._devices;
+
     for(let i = 0; i < devices.length; i++){
         let singleObject = devices[i];
         let selected = singleObject.selected;
@@ -157,21 +175,27 @@ class CustomisedToolBox extends Component<Props, *> {
         if(type === 'BLUETOOTH' && selected){
             text = 'BLUETOOTH';
             icon = BLUETOOTH;
+            break;
+
     
         }else if(type === 'HEADPHONES' && selected){
             text = 'HEADPHONES';
             icon = BLUETOOTH;
+            break;
+
     
         }else if(type === 'SPEAKER' && selected){
             text = 'SPEAKER ON';
             icon = SPEAKER_ENABLED_ICON;
+            break;
+
     
         }else if(type === 'EARPIECE' && selected){
             text = 'SPEAKER OFF';
             icon = SPEAKER_DISABLED_ICON;
+            break;
         }
     }
-
 
         return (
             <View style = { styles.toolBoxContainerStyle }>
@@ -228,9 +252,8 @@ class CustomisedToolBox extends Component<Props, *> {
                             (<TouchableHighlight disabled = {isHoldOn} onPress={this._handleSpeakerClick} underlayColor={ColorPalette.transparent}>
                                 <View style = { styles.toolBoxFunctionContainerStyle }>
                                 <Image style={styles.speakerIconStyle} source={icon} />
-                                            <Text style={toolBoxInactiveStyle}>{text}</Text>
-                                    {/* <Image style = { styles.speakerIconStyle } source = {isHoldOn ? SPEAKER_DISABLED_ICON : speakerOn ? SPEAKER_ENABLED_ICON : SPEAKER_DISABLED_ICON}/>
-                                    <Text style = { toolBoxInactiveStyle }>SPEAKER ON</Text> */}
+                                <Text style={toolBoxInactiveStyle}>{text}</Text>
+                                
                                 </View>
                             </TouchableHighlight>)
                             }

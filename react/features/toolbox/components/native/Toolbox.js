@@ -109,9 +109,7 @@ function Toolbox(props: Props) {
                     toggledStyles = { toggledButtonStyles } />
                 }
                  { _endConferenceSupported
-                    ? <HangupMenuButton
-                        styles = { hangupMenuButtonStyles }
-                        toggledStyles = { toggledButtonStyles } />
+                    ? <HangupMenuButton />
                     : <HangupButton
                         styles = { hangupButtonStyles } />
                 }

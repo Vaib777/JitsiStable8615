@@ -11,7 +11,7 @@ import BaseTheme from '../../../../base/ui/components/BaseTheme.native';
  */
 const EndMeetingIcon = (): JSX.Element => (<Icon
     color = { BaseTheme.palette.icon01 }
-    size = { 20 }
+    size = { 30 }
     src = { IconHangup } />);
 
 export default EndMeetingIcon;
